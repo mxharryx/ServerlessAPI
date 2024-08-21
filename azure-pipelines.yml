@@ -12,11 +12,11 @@ steps:
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - script: |
-    dotnet build --configuration Release
+    dotnet build ServerlessAPI.csproj --configuration Release
   displayName: 'Build Project'
 
 - script: |
-    dotnet publish --configuration Release --output $(Build.ArtifactStagingDirectory)
+    dotnet publish ServerlessAPI.csproj --configuration Release --output $(Build.ArtifactStagingDirectory)
   displayName: 'Publish Project'
 
 - task: AzureFunctionApp@1
