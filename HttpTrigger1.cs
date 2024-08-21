@@ -19,8 +19,15 @@ namespace ServerlessAPI.Functions
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
+            // Retrieve the "name" query parameter
+            var query = System.Web.HttpUtility.ParseQueryString(req.Url.Query);
+            string name = query["name"];
+
+            // If no name is provided, use a default value
+            name = string.IsNullOrEmpty(name) ? "World" : name;
+
             var response = req.CreateResponse(HttpStatusCode.OK);
-            await response.WriteStringAsync("Welcome to Azure Functions!");
+            await response.WriteStringAsync($"Hello, {name}! Welcome to Azure Functions!");
 
             return response;
         }
