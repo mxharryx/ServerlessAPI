@@ -21,7 +21,9 @@ namespace ServerlessAPI.Functions
 
             // Retrieve the "name" query parameter
             var query = System.Web.HttpUtility.ParseQueryString(req.Url.Query);
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             string name = query["name"];
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
             // If no name is provided, use a default value
             name = string.IsNullOrEmpty(name) ? "World" : name;
